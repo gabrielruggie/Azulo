@@ -1,0 +1,7 @@
+lib: gcloud
+
+// Each module must follow the contract that comes from its type, for example look at MessageStream
+module MessageAppInstance type CloudRunContainer {
+	name = “Messenger”
+	input = $start
+}
