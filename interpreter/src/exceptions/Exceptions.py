@@ -1,36 +1,32 @@
-import typing
-# Exception for incorrect library names/syntax
-class InvalidLibraryException(Exception):
-    
-    def __init__ (self, user_library: str):
-        self.user_library = user_library
-        super().__init__(f' \'{self.user_library}\' is not a valid library')
+# Exception for unknown and unreadable tokens
+class UnexpectedTokenException(Exception):
 
-# Exception for incorrect library names/syntax
-class UnknownKeywordException(Exception):
-    
-    def __init__ (self, unknown_word: str):
-        self.unknown_word = unknown_word
-        super().__init__(f'Unknown keyword: \'{self.unknown_word}\'')
+    def __init__(self, line_num: int, unknown_token: str):
+        self.message: str = f'Unexpected \'{unknown_token}\' on line {line_num}'
+        super().__init__(self.message)
 
 # Exception for incorrect library names/syntax
 class IllegalOperatorException(Exception):
     
-    def __init__ (self, operator: str):
-        self.operator = operator
-        super().__init__(f'Illegal Operator in Module declaration: \'{self.unknown_word}\'')
+    def __init__ (self, type:str, operator: str, line_num:int):
+        self.message = None
+        if type == 'module':
+            self.message = f'Illegal Operator in module declaration: \'{operator}\' near line {line_num}'
+        elif type == 'detail':
+            self.message = f'Illegal Operator in module attributes: \'{operator}\' near line {line_num}'
+        
+        super().__init__(self.message)
 
 # Exception for incorrect library names/syntax
-class MissiongBracketException(Exception):
+class MissingBracketException(Exception):
     
-    def __init__ (self, word: str):
-        self.word = word
-        super().__init__(f'Missing bracket by word: \'{self.unknown_word}\'')
+    def __init__ (self, type:str, word: str, line_num:int):
+        self.message = f'Missing {type} bracket by word: \'{word}\' at line: {line_num}'
+        super().__init__(self.message)
 
 # Exception for incorrect library names/syntax
 class MissingParameterException(Exception):
     
-    def __init__ (self, word: str, mod_name: str):
-        self.word = word
-        self.mod_name = mod_name
-        super().__init__(f'Missing parameter or equals sign by \'{self.unknown_word}\' in module {self.mod_name}')
+    def __init__ (self, line_num: int):
+        self.message = f'Missing parameter or equals sign near line {line_num}'
+        super().__init__()

@@ -9,3 +9,5 @@ ProjectRunner
     - Create convert to Python module classes as specified
     - Read in .azl file, translate, and run against python module methods
         - run in ProjectRunner file
+
+All azlx files should go in the azlx_files directory. Just have the cli copy the files to there.
