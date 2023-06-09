@@ -2,7 +2,7 @@ from typing import List
 import os
 
 # Put in a .env file
-PATH = "/Users/gabrielruggie/Desktop/Coding Projects/Nube-Visualizer/translator/src/"
+PATH = "/Users/gabrielruggie/Desktop/Coding Projects/Nube-Visualizer/interpreter/src/"
 
 class FileScanner:
 
@@ -27,5 +27,9 @@ class FileScanner:
 
         for string in nube_file_lines:
             key_lines.append(string.split(" "))
+
+        for line in key_lines:
+            for word in line:
+                word = word.replace("\n", "")
         
         return key_lines

@@ -1,0 +1,11 @@
+6/9/2023
+
+NewProjectRunner
+    - Read in project file with .azp extension
+    - Validate syntax and create .azm file ==> store in outputs directory as <project_name>.azm
+
+ProjectRunner
+    - Read in .azm file
+    - Create convert to Python module classes as specified
+    - Read in .azl file, translate, and run against python module methods
+        - run in ProjectRunner file
