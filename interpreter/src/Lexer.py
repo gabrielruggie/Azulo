@@ -1,4 +1,4 @@
-from interpreter.src.exceptions.Exceptions import *
+from interpreter.src.exceptions.LexerExceptions import *
 from interpreter.src.scanners.FileScanner import FileScanner
 
 from loguru import logger
