@@ -29,4 +29,4 @@ class MissingParameterException(Exception):
     
     def __init__ (self, line_num: int):
         self.message = f'Missing parameter or equals sign near line {line_num}'
-        super().__init__()
+        super().__init__(self.message)

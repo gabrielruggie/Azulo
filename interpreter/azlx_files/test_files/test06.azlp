@@ -1,0 +1,11 @@
+//
+Header Block
+//
+module project my_project {
+    //
+    Module Block
+    //    
+    set budget 600 
+	set duration 31 
+	set strict false 
+}

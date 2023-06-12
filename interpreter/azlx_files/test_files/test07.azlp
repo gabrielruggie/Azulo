@@ -1,0 +1,15 @@
+module project my_project {
+	set budget 600
+	set duration 31
+	set strict false
+}
+
+module category groceries {
+	set budget_allocation 0.25
+	set strict true 
+}
+
+module category clothes {
+	set budget_allocation 0.1
+	set strict false
+}
