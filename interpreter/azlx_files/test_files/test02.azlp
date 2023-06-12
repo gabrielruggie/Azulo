@@ -1,0 +1,6 @@
+// Test header //
+module project my_project {
+	set budget 600
+	set duration 31
+	set strict false
+}

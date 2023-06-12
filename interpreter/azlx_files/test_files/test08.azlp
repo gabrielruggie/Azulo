@@ -1,0 +1,10 @@
+module report default {
+	set always_run true
+	get category groceries remaining_budget
+	get category ALL remaining_budget
+
+	get category ALL allocation_amounts
+
+	get project this remaining_budget 
+	get project this burndown
+} 
