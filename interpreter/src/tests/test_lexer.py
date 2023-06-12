@@ -44,9 +44,27 @@ def test_comment_blocks ():
     result: list = lexer.process()
     assert result[0] == {'type': 'project', 'name': 'my_project', 'budget': '600', 'duration': '31', 'strict': 'false'}
 
+# Tests lexer's ability to create multiple modules of different sizes and attributes
 def test_multiple_module_creation ():
     scanner = FileScanner('test07.azlp')
     lexer = Lexer(scanner=scanner)
     result: list = lexer.process()
     assert result == [{'type': 'project', 'name': 'my_project', 'budget': '600', 'duration': '31', 'strict': 'false'}, {'type': 'category', 'name': 'groceries', 'budget_allocation': '0.25', 'strict': 'true'}, {'type': 'category', 'name': 'clothes', 'budget_allocation': '0.1', 'strict': 'false'}]
-    
+
+def test_report_creation ():
+    scanner = FileScanner('test08.azlp')
+    lexer = Lexer(scanner=scanner)
+    result: list = lexer.process()
+
+    assert result[0] ==     {
+                                'type': 'report', 
+                                'name': 'default', 
+                                'always_run': 'true', 
+                                'actions': [
+                                            {'module_type': 'category', 'module_name': 'groceries', 'attribute': 'remaining_budget'}, 
+                                            {'module_type': 'category', 'module_name': 'ALL', 'attribute': 'remaining_budget'}, 
+                                            {'module_type': 'category', 'module_name': 'ALL', 'attribute': 'allocation_amounts'}, 
+                                            {'module_type': 'project', 'module_name': 'this', 'attribute': 'remaining_budget'}, 
+                                            {'module_type': 'project', 'module_name': 'this', 'attribute': 'burndown'}
+                                            ]
+                            }

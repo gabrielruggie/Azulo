@@ -3,6 +3,15 @@ from interpreter.src.scanners.FileScanner import FileScanner
 
 from loguru import logger
 
+'''
+AZULO LEXER VERSION 1.0
+Basic lexer implementation. Takes in a 2D list of words and forms module dictionaries out of them. 
+Lexer only cares about syntax and spelling. Creating multiple projects in a single file or forgetting fields is the 
+job of the Validator to catch
+Notes:
+    - Only valid operations are `set` and `get`
+    - Modules follow a stiff contract
+'''
 class Lexer:
 
     def __init__(self, scanner: FileScanner):
