@@ -26,7 +26,7 @@ class Validator:
         try:
 
             new_category: CategoryDetails = CategoryDetails(**module)
-            category_azm = f'category name:{new_category.name} budget:{new_category.budget_allocation} strict:{new_category.strict}'
+            category_azm = f'category name:{new_category.name} allocation_amt:{new_category.allocation_amt} strict:{new_category.strict}'
             self.__azm_lines.append(category_azm)
         
         except Exception as e:
