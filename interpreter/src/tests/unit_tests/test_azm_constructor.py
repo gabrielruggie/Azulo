@@ -41,7 +41,7 @@ def test_report_azm_constructor ():
     operation_details: GetOperationDetails = GetOperationDetails(
         module_type='category',
         module_name='groceries',
-        module_attribute='name'
+        attribute='name'
     )
     operations.append(operation_details)
 
@@ -51,4 +51,29 @@ def test_report_azm_constructor ():
         actions=operations
     )
 
+    result: str = test_constructor.report_azm_constructor(report_details=details)
+    expected: str = "report name:default always_run:True actions category:groceries:name "
+
+    assert result == expected
     
+def test_dict_to_report_details_to_azm_line ():
+
+    details: dict = {
+        "name": 'default',
+        "always_run": "True",
+        "actions": [
+            {
+                "module_type": "category",
+                "module_name": "groceries",
+                "attribute": "name"
+            }
+        ]
+    }
+
+    report_details: ReportDetails = ReportDetails(**details)
+
+    result: str = test_constructor.report_azm_constructor(report_details=report_details)
+    expected: str = "report name:default always_run:True actions category:groceries:name "
+
+    assert result == expected
+

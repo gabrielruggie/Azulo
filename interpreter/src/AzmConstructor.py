@@ -51,7 +51,7 @@ class AzmConstructor:
         op_starter: str = "actions "
         for get_op in report_details.actions:
 
-            new_action: str = f'{get_op.module_type}:{get_op.module_name}:{get_op.module_attribute} '
+            new_action: str = f'{get_op.module_type}:{get_op.module_name}:{get_op.attribute} '
             op_starter += new_action
 
             logger.debug(f'Current Actions AZM line: {op_starter}')

@@ -62,14 +62,16 @@ class Validator:
 
             case "report": self.__validate_report_details(module_type=module_type, module=module)
 
-            case other: raise InvalidModuleTypeError(module_type=module_type)
+            case other: 
+                logger.debug(f'{module_type} is not a valid module type declaration')
+                raise InvalidModuleTypeError(module_type=module_type)
 
     def validate (self) -> List[str]:
 
         for module in self.__mod_objects:
 
             module_type: str = module['type']
-            self.__schema_controller(module_type=module_type)
+            self.__schema_controller(module_type=module_type, module=module)
         
         return self.__azm_lines
 
