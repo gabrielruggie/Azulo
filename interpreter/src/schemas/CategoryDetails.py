@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 
 class CategoryDetails (BaseModel):
-    budget_allocation: float
+    name: str
+    allocation_amt: float
     strict: bool
     

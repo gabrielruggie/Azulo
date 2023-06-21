@@ -2,7 +2,7 @@ from typing import List
 import os
 
 # Put in a .env file
-PATH = "/Users/gabrielruggie/Desktop/Coding Projects/Nube-Visualizer/interpreter/azlx_files/test_files"
+PATH = "/Users/gabrielruggie/Desktop/Coding Projects/Azulo/interpreter/azlx_files/test_files"
 
 class FileScanner:
 
