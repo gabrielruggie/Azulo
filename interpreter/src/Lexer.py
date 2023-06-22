@@ -1,5 +1,6 @@
 from interpreter.src.exceptions.LexerExceptions import *
 from interpreter.src.scanners.FileScanner import FileScanner
+from typing import List
 
 from loguru import logger
 
@@ -13,7 +14,7 @@ class Lexer:
         - Only valid operations are `set` and `get`
         - Modules follow a stiff contract
     """
-    def __init__(self, scanner: FileScanner):
+    def __init__(self):
         self.__open_brkt_count: int = 0
         self.__closed_brkt_count: int = 0
 
@@ -24,10 +25,12 @@ class Lexer:
         self.__new_module_details: dict = {}
         self.__file_modules: list = []
 
-        self.__scanner = scanner
-        self.__file_line_list = self.__scanner.get_split_lines()
+        self.__file_line_list = []
 
         self.__line_num = 0
+
+    def get_azlp_lines (self, azlp_lines: List[List[str]]) -> None:
+        self.__file_line_list = azlp_lines
 
     def set_file_line_list (self, line_list: list) -> None:
         self.__file_line_list = line_list

@@ -9,10 +9,13 @@ from loguru import logger
 
 class Validator:
 
-    def __init__ (self, mod_objects: list):
-        self.__mod_objects: list = mod_objects
+    def __init__ (self):
+        self.__mod_objects: List[dict] = None
         self.__azm_lines: list = []
         self.__azm_constructor = AzmConstructor()
+
+    def get_module_dict_objects (self, module_dict_objects: List[dict]) -> None:
+        self.__mod_objects = module_dict_objects
 
     def __validate_project_details (self, module_type:str, module: dict) -> None:
 
@@ -23,7 +26,7 @@ class Validator:
             self.__azm_lines.append(project_azm)
         
         except Exception as e:
-            logger.debug(e)
+            logger.debug(str(e))
             raise InvalidModuleFieldError(module_type=module_type)
 
     def __validate_category_details (self, module_type: str, module: dict) -> None:
