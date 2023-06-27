@@ -14,7 +14,7 @@ class Validator:
         self.__azm_lines: list = []
         self.__azm_constructor = AzmConstructor()
 
-    def get_module_dict_objects (self, module_dict_objects: List[dict]) -> None:
+    def set_module_dict_objects (self, module_dict_objects: List[dict]) -> None:
         self.__mod_objects = module_dict_objects
 
     def __validate_project_details (self, module_type:str, module: dict) -> None:

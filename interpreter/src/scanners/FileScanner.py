@@ -11,7 +11,7 @@ class FileScanner:
         self.filepath = filepath
 
     # Opens file and returns a list of string lines
-    def get_lines (self) -> List[str]:
+    def __get_lines (self) -> List[str]:
         lines: list = []
 
         with open(os.path.join(self.filepath, self.file_name)) as f:
@@ -25,7 +25,7 @@ class FileScanner:
     # Returns a 2D list of a .nub file where each list contains key words 
     # delimited by spaces
     def get_split_lines (self) -> List[List[str]]:
-        nube_file_lines: list = self.get_lines()
+        nube_file_lines: list = self.__get_lines()
         key_lines: list = []
 
         for string in nube_file_lines:

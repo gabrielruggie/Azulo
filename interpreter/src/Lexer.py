@@ -1,5 +1,4 @@
 from interpreter.src.exceptions.LexerExceptions import *
-from interpreter.src.scanners.FileScanner import FileScanner
 from typing import List
 
 from loguru import logger
@@ -29,11 +28,8 @@ class Lexer:
 
         self.__line_num = 0
 
-    def get_azlp_lines (self, azlp_lines: List[List[str]]) -> None:
+    def set_azlp_lines (self, azlp_lines: List[List[str]]) -> None:
         self.__file_line_list = azlp_lines
-
-    def set_file_line_list (self, line_list: list) -> None:
-        self.__file_line_list = line_list
 
     def get_file_modules (self) -> list:
         return self.__file_modules
@@ -130,7 +126,7 @@ class Lexer:
                             self.__comment_flag = not self.__comment_flag
 
 
-    def process (self) -> list:
+    def process (self) -> List[dict]:
 
         # Create stack trace through each function 
         try:
