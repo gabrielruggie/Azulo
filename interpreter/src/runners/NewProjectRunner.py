@@ -7,6 +7,7 @@ from interpreter.src.exceptions.LexerExceptions import *
 from interpreter.src.exceptions.ValidatorExceptions import *
 
 from typing import List
+from loguru import logger
 
 # Lets always have a user write a file to a specific directory ==> azlp_files
 # This will get run anytime a new project is created
@@ -15,34 +16,38 @@ from typing import List
 # 3. Validate dict objects
 # 4. Write azm file
 
-NEW_PROJECT_DIR = "/Users/gabrielruggie/Desktop/Coding Projects/Azulo/interpreter/azx_files/azlp_files/"
+def main (file_name: str):
+    # Instances
+    scanner = FileScanner(file_name=file_name)
+    lexer = Lexer()
+    validator = Validator()
 
-# Get Filename from CLI
-file_name: str = input()
+    try:
 
-# Instances
-scanner = FileScanner(file_name=file_name, filepath=NEW_PROJECT_DIR)
-lexer = Lexer()
-validator = Validator()
+        new_project_file_lines: List[List[str]] = scanner.get_split_lines()
 
-try:
+        lexer.set_azlp_lines(azlp_lines=new_project_file_lines)
+        module_dict_items: List[dict] = lexer.process()
 
-    new_project_file_lines: List[List[str]] = scanner.get_split_lines()
+        validator.set_module_dict_objects(module_dict_objects=module_dict_items)
+        valid_azm_lines: List[str] = validator.validate()
 
-    lexer.set_azlp_lines(azlp_lines=new_project_file_lines)
-    module_dict_items: List[dict] = lexer.process()
+        period_idx: int = file_name.index('.')
+        scanner.write_azm_file(project_name=file_name[0:period_idx], azm_line_list=valid_azm_lines)
 
-    validator.set_module_dict_objects(module_dict_objects=module_dict_items)
-    valid_azm_lines: List[str] = validator.validate()
+        logger.info("New project created!")
 
-    period_idx: int = file_name.index('.')
-    scanner.write_azm_file(project_name=file_name[0:period_idx], azm_line_list=valid_azm_lines)
+    except LexerSyntaxException as ex:
+        logger.debug("There was a syntax error in one of the module instantiations: ", ex)
 
-except LexerSyntaxException as ex:
-    pass
+    except ValidationError as ex:
+        logger.debug("At least one module does not follow contract: ", ex)
 
-except ValidationError as ex:
-    pass
+    except Exception as ex:
+        logger.debug("An unexpected issue occurred during new project runner run time", ex)
 
-# Done
+    # Done
 
+if __name__ == '__main__':
+    file_name: str = input()
+    main(file_name=file_name)

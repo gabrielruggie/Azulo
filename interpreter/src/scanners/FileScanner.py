@@ -2,19 +2,18 @@ from typing import List
 import os
 
 AZM_DIR = "/Users/gabrielruggie/Desktop/Coding Projects/Azulo/interpreter/azx_files/azm_files/"
+NEW_PROJECT_DIR = "/Users/gabrielruggie/Desktop/Coding Projects/Azulo/interpreter/azx_files/azlp_files/"
 
 class FileScanner:
 
-    def __init__(self, file_name: str, filepath: str) -> None:
+    def __init__(self, file_name: str) -> None:
         self.file_name: str = file_name
-        # Put in .env file
-        self.filepath = filepath
 
     # Opens file and returns a list of string lines
     def __get_lines (self) -> List[str]:
         lines: list = []
 
-        with open(os.path.join(self.filepath, self.file_name)) as f:
+        with open(os.path.join(NEW_PROJECT_DIR, self.file_name)) as f:
             for line in f:
                 stripped_line = line.strip("\n")
                 if stripped_line != '':
